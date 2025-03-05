@@ -1,0 +1,67 @@
+2025-03-01 17:41:27,799 - Processing query: Latest advancements in AI research
+2025-03-01 17:41:39,411 - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-03-01 17:41:39,434 - Answer Agent Error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: your_ope*******_key. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-03-01 17:45:52,252 - Processing query: Latest advancements in AI research
+2025-03-01 17:45:56,365 - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-03-01 17:45:56,396 - Answer Agent Error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: your_ope*******_key. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-03-01 17:55:07,710 - Processing query: Latest advancements in AI research
+2025-03-01 17:55:16,885 - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-03-01 17:55:16,921 - Answer Agent Error: Error code: 401 - {'error': {'message': 'Incorrect API key provided: your_ope*******_key. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2025-03-01 21:19:11,382 - Processing query: Latest advancements in AI research
+2025-03-01 21:19:22,009 - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 404 Not Found"
+2025-03-01 21:19:22,201 - Answer Agent Error: Error code: 404 - {'error': {'message': 'The model `gpt-4` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'param': None, 'code': 'model_not_found'}}
+2025-03-01 23:10:59,775 - Processing query: Latest advancements in AI research
+2025-03-01 23:11:03,125 - Fetched 5 search results for query: Latest advancements in AI research
+2025-03-01 23:11:07,989 - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 404 Not Found"
+2025-03-01 23:11:08,082 - Answer Agent Error: Error code: 404 - {'error': {'message': 'The model `gpt-4` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'param': None, 'code': 'model_not_found'}}
+2025-03-01 23:39:50,547 - Processing query: Latest advancements in AI research
+2025-03-01 23:39:53,343 - Fetched 5 search results for query: Latest advancements in AI research
+2025-03-01 23:39:57,354 - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 404 Not Found"
+2025-03-01 23:39:57,510 - Answer Agent Error: Error code: 404 - {'error': {'message': 'The model `mistral-7b` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'param': None, 'code': 'model_not_found'}}
+2025-03-02 17:20:41,170 - Processing query: Latest advancements in AI research
+2025-03-02 17:20:44,006 - Fetched 5 search results for query: Latest advancements in AI research
+2025-03-02 17:20:49,317 - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 404 Not Found"
+2025-03-02 17:20:49,352 - Answer Agent Error: Error code: 404 - {'error': {'message': 'The model `mistral-7b` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'param': None, 'code': 'model_not_found'}}
+2025-03-02 17:37:57,629 - Processing query: Latest advancements in AI research
+2025-03-02 17:38:00,796 - Fetched 5 search results for query: Latest advancements in AI research
+2025-03-02 17:38:04,710 - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 404 Not Found"
+2025-03-02 17:38:04,764 - Answer Agent Error: Error code: 404 - {'error': {'message': 'The model `mistral-7b` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'param': None, 'code': 'model_not_found'}}
+2025-03-02 19:16:47,465 - Processing query: Latest advancements in AI research
+2025-03-02 19:16:50,462 - Fetched 5 search results for query: Latest advancements in AI research
+2025-03-02 19:16:53,756 - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 404 Not Found"
+2025-03-02 19:16:53,830 - Answer Agent Error: Error code: 404 - {'error': {'message': 'The model `gpt-4-turbo` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'param': None, 'code': 'model_not_found'}}
+2025-03-02 19:21:23,205 - Processing query: Latest advancements in AI research
+2025-03-02 19:21:26,560 - Fetched 5 search results for query: Latest advancements in AI research
+2025-03-02 19:21:30,246 - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 404 Not Found"
+2025-03-02 19:21:30,248 - Answer Agent Error: Error code: 404 - {'error': {'message': 'The model `gpt-4-turbo` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'param': None, 'code': 'model_not_found'}}
+2025-03-02 19:32:37,727 - Processing query: Latest advancements in AI research
+2025-03-02 19:32:39,290 - Fetched 5 search results for query: Latest advancements in AI research
+2025-03-02 19:32:41,998 - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-03-02 19:32:42,000 - Retrying request to /chat/completions in 0.485879 seconds
+2025-03-02 19:32:42,802 - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-03-02 19:32:42,803 - Retrying request to /chat/completions in 0.769815 seconds
+2025-03-02 19:32:43,891 - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-03-02 19:32:43,895 - Answer Agent Error: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+2025-03-02 19:38:47,042 - Processing query: Latest advancements in AI research
+2025-03-02 19:38:49,242 - Fetched 5 search results for query: Latest advancements in AI research
+2025-03-02 19:38:51,202 - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-03-02 19:38:51,204 - Retrying request to /chat/completions in 0.480481 seconds
+2025-03-02 19:38:52,003 - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-03-02 19:38:52,005 - Retrying request to /chat/completions in 0.965000 seconds
+2025-03-02 19:38:53,296 - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2025-03-02 19:38:53,298 - Answer Agent Error: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+2025-03-02 20:23:20,623 - Processing query: Latest advancements in AI research
+2025-03-02 20:23:23,533 - Fetched 5 search results for query: Latest advancements in AI research
+2025-03-02 20:23:23,747 - Answer Agent Request Error: 404 Client Error: Not Found for url: https://api.deepseek.com/chat
+2025-03-02 20:25:45,814 - Processing query: Latest advancements in AI research
+2025-03-02 20:25:48,246 - Fetched 5 search results for query: Latest advancements in AI research
+2025-03-02 20:25:48,979 - HTTP error occurred: 402 Client Error: Payment Required for url: https://api.deepseek.com/v1/chat/completions
+2025-03-02 21:05:34,007 - Processing query: Latest advancements in AI research
+2025-03-02 21:05:36,930 - Fetched 5 search results for query: Latest advancements in AI research
+2025-03-02 21:18:44,087 - Successfully generated summary using local model.
+2025-03-02 22:16:27,907 - Processing query: Latest advancements in AI research
+2025-03-02 22:16:31,695 - Fetched 5 search results for query: Latest advancements in AI research
+2025-03-02 22:40:18,192 - \u2705 Summarization model loaded successfully.
+2025-03-02 22:40:31,606 - \U0001f50e Processing query: Latest advancements in AI research
+2025-03-02 22:41:00,775 - \u2705 Fetched 5 search results for query: Latest advancements in AI research
+2025-03-02 22:46:04,666 - \u2705 Successfully generated summary using local model.
