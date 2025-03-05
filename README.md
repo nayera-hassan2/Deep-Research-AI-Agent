@@ -4,10 +4,10 @@ Overview:
 
 This project is a Deep Research AI Agentic System designed to crawl websites and gather online information using Tavily Search API. The system is built with LangGraph and LangChain, implementing a multi-agent approach where:
 
-One agent focuses on research and data collection
-1. Another agent works as an answer drafter by summarizing the collected data
-2. The system efficiently organizes and processes gathered information, making it 
-3. useful for automated research tasks.
+1. One agent focuses on research and data collection
+2. Another agent works as an answer drafter by summarizing the collected data
+3. The system efficiently organizes and processes gathered information, making it 
+4. useful for automated research tasks.
 
 Features
 
@@ -29,13 +29,13 @@ Installation & Setup
 
 1. Clone the Repository
 
-git clone https://github.com/your-username/your-repo.git
+git clone https://github.com/nayera-hassan2/Deep-Research-AI-Agent.git
 
 cd your-repo
 
 2. Set Up a Virtual Environment
 
-python -m venv venv
+* python -m venv venv
 
 Activate it:
 
@@ -45,18 +45,19 @@ Activate it:
 
 3. Install Dependencies
 
-pip install -r requirements.txt
+* pip install -r requirements.txt
 
 4. Set Up Environment Variables
 Create a .env file and add your Tavily API key:
 
 ini
-TAVILY_API_KEY=your_api_key_here
+* TAVILY_API_KEY=your_api_key_here
 
-Usage:
+Usage
+
 Run the AI Research System
 
-python main.py
+* python main.py
 
 You will be prompted to enter a research topic in the terminal.
 
@@ -67,7 +68,7 @@ Example Queries:
 3. Enter research topic: Evolution of web development frameworks  
 4. The system will fetch the research data, summarize it, and save the output to research_output.json.
 
-^ Future Improvements
+Future Improvements
 
 * Improve data filtering for more relevant results
 * Optimize summarization for better context understanding
