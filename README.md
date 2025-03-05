@@ -32,14 +32,16 @@ Installation & Setup
 git clone https://github.com/your-username/your-repo.git
 
 cd your-repo
+
 2. Set Up a Virtual Environment
 
 python -m venv venv
+
 Activate it:
 
-PowerShell: venv\Scripts\Activate
-CMD: venv\Scripts\activate.bat
-Git Bash: source venv/Scripts/activate
+* PowerShell: venv\Scripts\Activate
+* CMD: venv\Scripts\activate.bat
+* Git Bash: source venv/Scripts/activate
 
 3. Install Dependencies
 
@@ -53,21 +55,25 @@ TAVILY_API_KEY=your_api_key_here
 
 Usage:
 Run the AI Research System
+
 python main.py
 
 You will be prompted to enter a research topic in the terminal.
 
 Example Queries:
 
-Enter research topic: Latest advancements in AI  
-Enter research topic: Impact of quantum computing on cryptography  
-Enter research topic: Evolution of web development frameworks  
-The system will fetch the research data, summarize it, and save the output to research_output.json.
+1. Enter research topic: Latest advancements in AI  
+2. Enter research topic: Impact of quantum computing on cryptography  
+3. Enter research topic: Evolution of web development frameworks  
+4. The system will fetch the research data, summarize it, and save the output to research_output.json.
 
-Future Improvements
-Improve data filtering for more relevant results
-Optimize summarization for better context understanding
-Implement web UI for better user interaction
+^ Future Improvements
+
+* Improve data filtering for more relevant results
+* Optimize summarization for better context understanding
+* Implement web UI for better user interaction
+
 License
+
 This project is for research purposes. Modify and use it as needed.
 
