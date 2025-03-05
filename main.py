@@ -9,9 +9,6 @@ from langgraph.graph import StateGraph
 from transformers import pipeline
 
 
-# ===========================
-# 🔹 CONFIGURATION
-# ===========================
 # Setting up API keys 
 load_dotenv()  # Loading API keys from .env file
 
@@ -20,137 +17,84 @@ TAVILY_API_KEY = os.getenv("TAVILY_API_KEY", "tvly-dev-6lhglSNonYyJuyFd2Ff0ZRaY0
 
 # Ensuring API key is present
 if not TAVILY_API_KEY:
-    raise ValueError("API key missing! Ensure .env file contains TAVILY_API_KEY.")
+    raise ValueError("API key missing! Add TAVILY_API_KEY to .env.")
 
 # Seting up API key in environment
 os.environ["TAVILY_API_KEY"] = "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"
 
 
-# Initializing Logger/ log file
+# Logger
 logging.basicConfig(filename="ai_research.log", level=logging.INFO, format="%(asctime)s - %(message)s")
 
-
-# Initializing Summarization Model Globally
+# Loading summarization model
 try:
-    summarizer = pipeline("summarization", model="facebook/bart-large-cnn")  # Load BART once
-    logging.info("✅ Summarization model loaded successfully.")
+    summarizer = pipeline("summarization", model="facebook/bart-large-cnn")
 except Exception as e:
-    logging.error(f"⚠️ Error loading summarization model: {e}")
-    summarizer = None  # Prevent crashes
+    logging.error(f"Summarization model error: {e}")
+    summarizer = None
 
-# =========================== 
-# 🔹 STATE SCHEMA
-# ===========================
-class ResearchState(TypedDict):
+# State representation for the AI research system
+class ResearchState(dict):
     query: str
     data: str
     summary: str
 
-
-# ===========================
-# 🔹 RESEARCH AGENT (Web Crawler)
-# ===========================
+# Fetch research data from Tavily
 def fetch_research_data(state: ResearchState) -> ResearchState:
-    """Fetches research data using Tavily Search API."""
+    """Fetches research data from Tavily."""
     query = state["query"]
-
     try:
         search_tool = TavilySearchResults()
-        results = search_tool.invoke({"query": query, "num_results": 5})  # Fetch top 5 search results
-
+        results = search_tool.invoke({"query": query, "num_results": 5})
         if not results:
-            logging.warning(f"⚠️ No relevant data found for query: {query}")
+            logging.warning(f"No data found for: {query}")
             return {"query": query, "data": "No relevant data found.", "summary": ""}
-
-        logging.info(f"✅ Fetched {len(results)} search results for query: {query}")
         return {"query": query, "data": json.dumps(results, indent=2), "summary": ""}
-
     except Exception as e:
-        logging.error(f"❌ Research Agent Error: {e}")
-        return {"query": query, "data": "Error retrieving research data.", "summary": ""}
+        logging.error(f"Research Agent error: {e}")
+        return {"query": query, "data": "Error retrieving data.", "summary": ""}
 
-
-# ===========================
-# 🔹 Local DRAFTING AGENT (Summarizes Data) (No API Needed)
-# ===========================
+# Summarize research findings
 def generate_summary(state: ResearchState) -> ResearchState:
-    """Summarizes research findings using a local Transformer model (offline)."""
+    """Summarizes research findings."""
     data = state["data"]
-
     if not data or data == "No relevant data found.":
-        return {"query": state["query"], "data": data, "summary": "⚠️ No data available for summarization."}
-
+        return {"query": state["query"], "data": data, "summary": "No data available for summarization."}
     if summarizer is None:
-        return {"query": state["query"], "data": data, "summary": "⚠️ Summarization model is unavailable."}
-
+        return {"query": state["query"], "data": data, "summary": "Summarization model unavailable."}
     try:
         summary = summarizer(data[:1024], max_length=150, min_length=50, do_sample=False)[0]["summary_text"]
-        logging.info("✅ Successfully generated summary using local model.")
         return {"query": state["query"], "data": data, "summary": summary}
-
     except Exception as e:
-        logging.error(f"❌ Summarization Agent Error: {e}")
-        return {"query": state["query"], "data": data, "summary": "⚠️ Error generating summary."}
+        logging.error(f"Summarization error: {e}")
+        return {"query": state["query"], "data": data, "summary": "Error generating summary."}
 
-
-# ===========================
-# 🔹 BUILD THE GRAPH (Fix for SimpleSequentialChain)
-# ===========================
+# Define research workflow
 graph = StateGraph(ResearchState)
 graph.add_node("ResearchAgent", fetch_research_data)
 graph.add_node("SummarizationAgent", generate_summary)
+graph.add_edge("ResearchAgent", "SummarizationAgent")
+graph.set_entry_point("ResearchAgent")
+workflow = graph.compile()
 
-graph.add_edge("ResearchAgent", "SummarizationAgent")  # Linking nodes
-graph.set_entry_point("ResearchAgent")  # Setting entry point
-
-workflow = graph.compile()  # Compiling workflow
-
-
-# ===========================
-# 🔹 RUN THE SYSTEM (Pipeline)
-# ===========================
-def run_ai_research_system(query: str) -> str:
-    """Runs the AI research pipeline locally and saves output."""
-    logging.info(f"🔎 Processing query: {query}")
+# Run AI research pipeline
+def run_ai_research_system(query: str = None) -> str:
+    """Runs AI research pipeline with predefined or user input."""
+    if not query:
+        query = input("Enter research topic: ").strip()
+        if not query:
+            print("Error: Query cannot be empty.")
+            return ""
+    logging.info(f"Processing query: {query}")
     result = workflow.invoke({"query": query, "data": "", "summary": ""})
     
-    # Save output to file
-    output_data = {"query": query, "summary": result["summary"]}
+    output_data = {"query": query, "data": result["data"], "summary": result["summary"]}
     with open("research_output.json", "w") as file:
         json.dump(output_data, file, indent=4)
     
     return result["summary"]
 
-
-def run_interactive_mode():
-    """Interactive mode for user input."""
-    query = input("🔍 Enter a research topic: ").strip()
-
-    if not query:
-        print("❌ Error: Query cannot be empty.")
-        return
-
-    print("\n🚀 Researching... Please wait...")
-    research_data = fetch_research_data({"query": query, "data": "", "summary": ""})["data"]
-
-    if research_data and research_data != "No relevant data found.":
-        print("\n📝 Drafting Summary...")
-        summary = generate_summary({"query": query, "data": research_data, "summary": ""})["summary"]
-
-        # Save output to file
-        output_data = {"query": query, "summary": summary}
-        with open("research_output.json", "w") as file:
-            json.dump(output_data, file, indent=4)
-
-        print("\n✅ Research Summary:\n", summary)
-    else:
-        print("\n⚠️ No research data found!")
-
-
-# ===========================
-# 🔹 MAIN EXECUTION
-# ===========================
 if __name__ == "__main__":
-    query = "Latest advancements in AI research"
+    query = None  # Can Set query here for automation or leave None for manual input
     output = run_ai_research_system(query)
-    print("\n📄 Final Research Summary:\n", output)
+    print("\nResearch Summary:\n", output)
