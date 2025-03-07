@@ -1,28 +1,35 @@
 # AI Research Agent System
 
-Overview:
+Overview
 
-This project is a Deep Research AI Agentic System designed to crawl websites and gather online information using Tavily Search API. The system is built with LangGraph and LangChain, implementing a multi-agent approach where:
+The AI Research Agent System is a Deep Research AI Agentic System designed to crawl websites and gather online information using the Tavily Search API. This system leverages LangGraph and LangChain to implement a multi-agent approach:
 
-1. One agent focuses on research and data collection
-2. Another agent works as an answer drafter by summarizing the collected data
-3. The system efficiently organizes and processes gathered information, making it 
-4. useful for automated research tasks.
+1. Research Agent - Gathers relevant data from the web.
+
+2. Answer Drafter Agent - Summarizes and structures the collected data into meaningful insights.
+
+3. LangGraph Orchestration - Ensures seamless coordination between agents for efficient processing.
+
+The system automates research tasks, making it a valuable tool for data gathering and summarization.
 
 Features
 
-1. Web crawling using Tavily API
-2. Summarization of research findings using
-Transformer models
-3. Multi-agent workflow with LangGraph
-4. Saves results in a structured JSON format
-5. Simple and interactive CLI-based input
+* Web crawling using Tavily API
+* AI-powered summarization using transformer models
+* Multi-agent workflow with LangGraph
+* Results saved in a structured JSON format
+* Simple and interactive CLI-based input
 
 Tech Stack
+
 * Python
+
 * LangGraph & LangChain
+
 * Tavily API
+
 * Transformers (Hugging Face)
+
 * Logging & JSON Handling
 
 Installation & Setup
@@ -31,50 +38,52 @@ Installation & Setup
 
 git clone https://github.com/nayera-hassan2/Deep-Research-AI-Agent.git
 
-cd your-repo
+cd Deep-Research-AI-Agent
 
 2. Set Up a Virtual Environment
 
-* python -m venv venv
+python -m venv venv
 
-Activate it:
+Activate the virtual environment based on your OS:
 
 * PowerShell: venv\Scripts\Activate
+
 * CMD: venv\Scripts\activate.bat
-* Git Bash: source venv/Scripts/activate
+
+* Git Bash/Linux/macOS: source venv/bin/activate
 
 3. Install Dependencies
 
-* pip install -r requirements.txt
+pip install -r requirements.txt
 
 4. Set Up Environment Variables
+
 Create a .env file and add your Tavily API key:
 
-ini
-* TAVILY_API_KEY=your_api_key_here
+TAVILY_API_KEY=your_api_key_here
 
 Usage
 
-Run the AI Research System
+Running the AI Research System
 
-* python main.py
+python main.py
 
 You will be prompted to enter a research topic in the terminal.
 
 Example Queries:
 
-1. Enter research topic: Latest advancements in AI  
-2. Enter research topic: Impact of quantum computing on cryptography  
-3. Enter research topic: Evolution of web development frameworks  
-4. The system will fetch the research data, summarize it, and save the output to research_output.json.
+* Enter research topic: Latest advancements in AI  
+* Enter research topic: Impact of quantum computing on cryptography  
+* Enter research topic: Evolution of web development frameworks  
+
+The system will fetch research data, summarize it, and save the output to research_output.json.
 
 Future Improvements
 
-* Improve data filtering for more relevant results
-* Optimize summarization for better context understanding
-* Implement web UI for better user interaction
+* Enhanced data filtering for more relevant results
+* Optimized summarization for better context understanding
+* Web-based UI for better user interaction
 
 License
 
 This project is for research purposes. Modify and use it as needed.
-

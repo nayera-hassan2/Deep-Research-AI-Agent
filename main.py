@@ -4,10 +4,9 @@ import logging
 import requests
 from typing import TypedDict
 from dotenv import load_dotenv
-from langchain_community.tools import TavilySearchResults
+from langchain_community.tools.tavily_search import TavilySearchResults
 from langgraph.graph import StateGraph
 from transformers import pipeline
-
 
 # Setting up API keys 
 load_dotenv()  # Loading API keys from .env file
@@ -23,7 +22,7 @@ if not TAVILY_API_KEY:
 os.environ["TAVILY_API_KEY"] = "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"
 
 
-# Logger
+# Setting up logging
 logging.basicConfig(filename="ai_research.log", level=logging.INFO, format="%(asctime)s - %(message)s")
 
 # Loading summarization model
@@ -34,22 +33,27 @@ except Exception as e:
     summarizer = None
 
 # State representation for the AI research system
-class ResearchState(dict):
+class ResearchState(TypedDict):
     query: str
     data: str
     summary: str
 
-# Fetch research data from Tavily
+# Fetching research data from Tavily
 def fetch_research_data(state: ResearchState) -> ResearchState:
     """Fetches research data from Tavily."""
     query = state["query"]
     try:
+        logging.info(f"Fetching data for query: {query}")
         search_tool = TavilySearchResults()
         results = search_tool.invoke({"query": query, "num_results": 5})
+        
         if not results:
             logging.warning(f"No data found for: {query}")
             return {"query": query, "data": "No relevant data found.", "summary": ""}
-        return {"query": query, "data": json.dumps(results, indent=2), "summary": ""}
+        fetched_data = json.dumps(results, indent=2)
+        logging.info(f"Fetched data: {fetched_data[:500]}...")  # Log first 500 chars
+
+        return {"query": query, "data": fetched_data, "summary": ""}
     except Exception as e:
         logging.error(f"Research Agent error: {e}")
         return {"query": query, "data": "Error retrieving data.", "summary": ""}
@@ -58,16 +62,22 @@ def fetch_research_data(state: ResearchState) -> ResearchState:
 def generate_summary(state: ResearchState) -> ResearchState:
     """Summarizes research findings."""
     data = state["data"]
+
     if not data or data == "No relevant data found.":
         return {"query": state["query"], "data": data, "summary": "No data available for summarization."}
+    
     if summarizer is None:
         return {"query": state["query"], "data": data, "summary": "Summarization model unavailable."}
+    
     try:
+        logging.info("Generating summary...")
         summary = summarizer(data[:1024], max_length=150, min_length=50, do_sample=False)[0]["summary_text"]
+        logging.info(f"Summary generated: {summary[:200]}...")  # Log first 200 chars
         return {"query": state["query"], "data": data, "summary": summary}
     except Exception as e:
         logging.error(f"Summarization error: {e}")
         return {"query": state["query"], "data": data, "summary": "Error generating summary."}
+
 
 # Define research workflow
 graph = StateGraph(ResearchState)
@@ -85,16 +95,34 @@ def run_ai_research_system(query: str = None) -> str:
         if not query:
             print("Error: Query cannot be empty.")
             return ""
-    logging.info(f"Processing query: {query}")
-    result = workflow.invoke({"query": query, "data": "", "summary": ""})
     
+    logging.info(f"Processing query: {query}")
+    
+    # Invoke LangGraph workflow
+    try:
+        result = workflow.invoke({"query": query, "data": "", "summary": ""})
+    except Exception as e:
+        logging.error(f"Workflow execution error: {e}")
+        return "Error executing workflow."
+
     output_data = {"query": query, "data": result["data"], "summary": result["summary"]}
+    
     with open("research_output.json", "w") as file:
         json.dump(output_data, file, indent=4)
-    
+
     return result["summary"]
 
+
+# Main execution
 if __name__ == "__main__":
-    query = None  # Can Set query here for automation or leave None for manual input
-    output = run_ai_research_system(query)
-    print("\nResearch Summary:\n", output)
+    print("\nWelcome to the AI Research System!")
+    print("You can enter a topic, and the system will fetch relevant research data and summarize it.\n")
+    
+    query = input("Enter your research topic: ").strip()  # Prompting user for input
+    
+    if not query:
+        print("\nError: Query cannot be empty. Please restart and enter a valid topic.")
+    else:
+        print("\nFetching research data, please wait...\n")
+        output = run_ai_research_system(query)
+        print("\nResearch Summary:\n", output)

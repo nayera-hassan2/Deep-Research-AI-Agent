@@ -65,3 +65,11 @@
 2025-03-02 22:40:31,606 - \U0001f50e Processing query: Latest advancements in AI research
 2025-03-02 22:41:00,775 - \u2705 Fetched 5 search results for query: Latest advancements in AI research
 2025-03-02 22:46:04,666 - \u2705 Successfully generated summary using local model.
+2025-03-07 15:41:59,417 - Processing query: Artificial Intelligence
+2025-03-07 15:42:05,523 - Fetching data for query: Artificial Intelligence
+2025-03-07 15:42:09,745 - Fetched data: [
+  {
+    "url": "https://en.wikipedia.org/wiki/Artificial_intelligence",
+    "content": "The traditional goals of AI research include reasoning, knowledge representation, planning, learning, natural language processing, perception, and support for robotics.[a] General intelligence\u2014the ability to complete any task performed by a human on an at least equal level\u2014is among the field's long-term goals.[4] To reach these goals, AI researchers have adapted and integrated a wide range of tech...
+2025-03-07 15:42:09,995 - Generating summary...
+2025-03-07 15:43:08,119 - Summary generated: Artificial intelligence is the ability to complete any task performed by a human on an at least equal level. The traditional goals of AI research include reasoning, knowledge representation, planning,...

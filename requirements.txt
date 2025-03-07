@@ -1,4 +1,7 @@
-langchain
-langgraph
-tavily
-openai
+langchain>=0.1.0  
+langgraph>=0.0.7  
+tavily>=0.3.0  
+openai>=1.0.0  # Required if using OpenAI models  
+transformers>=4.35.0  # For text summarization (Hugging Face models)  
+python-dotenv>=1.0.0  # For managing API keys in .env file  
+requests>=2.31.0  # For making HTTP requests 
