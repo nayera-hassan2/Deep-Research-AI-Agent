@@ -1,6 +1,6 @@
 # AI Research Agent System
 
-Overview
+Overview:
 
 The AI Research Agent System is a Deep Research AI Agentic System designed to crawl websites and gather online information using the Tavily Search API. This system leverages LangGraph and LangChain to implement a multi-agent approach:
 
@@ -12,7 +12,7 @@ The AI Research Agent System is a Deep Research AI Agentic System designed to cr
 
 The system automates research tasks, making it a valuable tool for data gathering and summarization.
 
-Features
+Features:
 
 * Web crawling using Tavily API
 * AI-powered summarization using transformer models
@@ -20,7 +20,7 @@ Features
 * Results saved in a structured JSON format
 * Simple and interactive CLI-based input
 
-Tech Stack
+Tech Stack:
 
 * Python
 
@@ -32,7 +32,7 @@ Tech Stack
 
 * Logging & JSON Handling
 
-Installation & Setup
+Installation & Setup:
 
 1. Clone the Repository
 
@@ -62,7 +62,7 @@ Create a .env file and add your Tavily API key:
 
 TAVILY_API_KEY=your_api_key_here
 
-Usage
+Usage:
 
 Running the AI Research System
 
@@ -78,12 +78,12 @@ Example Queries:
 
 The system will fetch research data, summarize it, and save the output to research_output.json.
 
-Future Improvements
+Future Improvements:
 
 * Enhanced data filtering for more relevant results
 * Optimized summarization for better context understanding
 * Web-based UI for better user interaction
 
-License
+License:
 
 This project is for research purposes. Modify and use it as needed.
